@@ -1,5 +1,7 @@
 package com.twitter.poruke;
 
+import java.util.GregorianCalendar;
+
 
 /**
  * Predstavlja poruku na Twitter-u.
@@ -26,6 +28,7 @@ public class TwitterPoruka {
 	public String getKorisnik() {
 		return korisnik;
 	}
+	
 	
 	/**
 	 * Metoda postavlja user name korisnika na unetu vrednost.
@@ -68,6 +71,5 @@ public class TwitterPoruka {
 	
 	public String toString(){
 		return "KORISNIK:"+korisnik+" VREME:"+vreme.getTime()+" PORUKA:"+poruka;
-	}
-
+	}	
 }
