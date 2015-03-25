@@ -22,6 +22,19 @@ public class TwitterPoruka {
 	private String poruka;
 	
 	/**
+	 * Vreme objavljivanja poruke (twit-a).
+	 */
+	private GregorianCalendar vreme = new GregorianCalendar();
+	
+	/**
+	 * Metoda vraca vreme objavljivanja poruke, tj. atribut vreme;
+	 * @return vreme objavljivanja poruke
+	 */
+	public GregorianCalendar getVreme() {
+		return vreme;
+	}
+	
+	/**
 	 * Metoda vraca user name korisnika, tj. atribut korisnik.
 	 * @return korisnik (user name korisnika) kao String
 	 */
