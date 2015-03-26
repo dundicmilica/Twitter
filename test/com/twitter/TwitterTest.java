@@ -243,7 +243,7 @@ public class TwitterTest {
 		TwitterPoruka [] resrenje = twitter.vratiPoruke(5, "danas");
 		
 		assertEquals(pomocniNiz[0].getPoruka(), resrenje[0].getPoruka());
-	} //uhvacen bug prijavljen NullPointerException
+	}
 	
 	/**
 	 * Test method for {@link com.twitter.Twitter#vratiPoruke(int, java.lang.String)}.
@@ -275,5 +275,36 @@ public class TwitterTest {
 		assertEquals(pomocniNiz[1].getPoruka(), resrenje[1].getPoruka());
 	}
 	
+	/**
+	 * Test method for {@link com.twitter.Twitter#vratiPoruke(int, java.lang.String)}.
+	 */
+	@Test
+	public void testVratiPorukeMaxBroj() {
+		TwitterPoruka twit2 = new TwitterPoruka();
+		TwitterPoruka twit3 = new TwitterPoruka();
+		
+		twit.setKorisnik("Milica");
+		twit.setPoruka("danas je divan dan");
+		
+		twit2.setKorisnik("Marko");
+		twit2.setPoruka("Neka poruka");
+		
+		twit3.setKorisnik("Zeljko");
+		twit3.setPoruka("idem na bazen danas");
+		
+		twitter.unesi(twit.getKorisnik(), twit.getPoruka());
+		twitter.unesi(twit2.getKorisnik(), twit2.getPoruka());
+		twitter.unesi(twit3.getKorisnik(), twit3.getPoruka());
+		
+		TwitterPoruka[] pomocniNiz = new TwitterPoruka[2];
+		pomocniNiz[0] = twit;
+		pomocniNiz[1] = twit3;
+		
+		TwitterPoruka [] resrenje = twitter.vratiPoruke(-5, "danas");
+		
+		assertEquals(100, resrenje.length);
+		
+		
+	}
 
 }
