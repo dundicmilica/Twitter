@@ -45,7 +45,8 @@ public class TwitterTest {
 		}
 	}
 
-	/**Test proverava da li metoda vraca praznu listu kad u njoj 
+	/**
+	 * Test proverava da li metoda vraca praznu listu kad u njoj 
 	 * jos uvek ne ostoji objekat klase TwitterPoruka
 	 * Test method for {@link com.twitter.Twitter#vratiSvePoruke()}.
 	 */
@@ -56,7 +57,7 @@ public class TwitterTest {
 	}
 	
 	/**
-	 * Test proverava da li metoda vraca listu objekata klase TwitterPoruk
+	 * Test proverava da li metoda vraca listu objekata klase TwitterPoruka
 	 * kada se u listi nalazi samo jedan element
 	 * Test method for {@link com.twitter.Twitter#vratiSvePoruke()}.
 	 */
@@ -71,8 +72,7 @@ public class TwitterTest {
 		twitter.unesi(twit.getKorisnik(), twit.getPoruka());
 		
 		assertEquals(true, twitter.uporediListe(pomocnaLista));
-	} //primeceno da metoda unesi ima bug
-	  //test bi trebalo da prodje kada otklonimo bug u metodi unesi
+	}
 	
 	
 	/**
@@ -98,8 +98,7 @@ public class TwitterTest {
 		
 		assertEquals(true, twitter.uporediListe(pomocnaLista));
 		
-	} //takodje primeciujemo bug u metodi unesi
-	  //test bi trebalo da prodje kada otklonimo bug u metodi unesi
+	}
 	
 	/**
 	 * Test proverava da li metoda postavlja objekada klase TwitterPoruka
@@ -123,7 +122,7 @@ public class TwitterTest {
 		twitter.unesi(twit2.getKorisnik(), twit2.getPoruka());
 		
 		assertEquals(true, twitter.vratiPoslednji().equals(pomocnaLista.getLast()));
-	} //test bi trebalo da prodje nakon otklanjanja bug-a u metodi unesi
+	} 
 
 	/**
 	 * Test proverava da li metoda pravilno unosi korisnika
@@ -136,8 +135,8 @@ public class TwitterTest {
 		
 		twitter.unesi(twit.getKorisnik(), twit.getPoruka());
 		
-		assertEquals("Milica", twitter.vratiKorisnika());
-	} //uhvacen bug u metodi unesi
+		assertEquals("Milica", twitter.vratiKorisnika(0));
+	}
 	
 	/**
 	 * Test proverava da li metoda pravilno unosi poruku
@@ -150,7 +149,7 @@ public class TwitterTest {
 		
 		twitter.unesi(twit.getKorisnik(), twit.getPoruka());
 		
-		assertEquals("Baterija mi traje krace od zivota plavuse u horor filmu", twitter.vratiPoruku());
+		assertEquals("Baterija mi traje krace od zivota plavuse u horor filmu", twitter.vratiPoruku(0));
 	}
 
 	/**

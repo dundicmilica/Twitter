@@ -34,7 +34,7 @@ public class Twitter {
 	public void unesi(String korisnik, String poruka) {
 		TwitterPoruka twit = new TwitterPoruka();
 		
-		twit.setKorisnik("korisnik");
+		twit.setKorisnik(korisnik);
 		twit.setPoruka(poruka);
 		
 		poruke.addLast(twit);
@@ -47,13 +47,13 @@ public class Twitter {
 	}
 	
 	//Pomocna metoda koja vraca korisnika
-	public String vratiKorisnika () {
-		return poruke.get(0).getKorisnik();
-	}
+	public String vratiKorisnika (int i) {
+			return poruke.get(i).getKorisnik();
+		}
 	
 	//Pomocna metoda koja vraca poruku
-		public String vratiPoruku () {
-			return poruke.get(0).getPoruka();
+		public String vratiPoruku (int i) {
+			return poruke.get(i).getPoruka();
 		}
 	
 	/**
