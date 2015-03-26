@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * @author Korisnik
+ * @author Dundic Milica
  *
  */
 public class TwitterPorukaTest {
@@ -108,9 +108,9 @@ public class TwitterPorukaTest {
 		twit.setKorisnik("Milica");
 		twit.setPoruka("Baterija mi traje krace od zivota plavuse u horor filmu");	
 		
-		assertEquals ("KORISNIK:Milica" + " VREME:"+new GregorianCalendar()
+		assertEquals ("KORISNIK:Milica" + " VREME:"+new GregorianCalendar().getTime()
 			+" PORUKA:Baterija mi traje krace od zivota plavuse u horor filmu",
-				"KORISNIK:"+twit.getKorisnik()+ " VREME:"+twit.getVreme()+" PORUKA:"+twit.getPoruka());
+				"KORISNIK:"+twit.getKorisnik()+ " VREME:"+twit.getVreme().getTime()+" PORUKA:"+twit.getPoruka());
 	}
 
 }
