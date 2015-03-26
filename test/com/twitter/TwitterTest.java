@@ -22,6 +22,7 @@ public class TwitterTest {
 	TwitterPoruka twit;
 	Twitter twitter;
 	LinkedList<TwitterPoruka> pomocnaLista;
+	
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -97,6 +98,9 @@ public class TwitterTest {
 		twitter.unesi(twit2.getKorisnik(), twit2.getPoruka());
 		
 		assertEquals(true, twitter.uporediListe(pomocnaLista));
+		//ukoliko vrati true znaci da je twitter lisa jednaka nasoj pomocnoj listi
+		//na taj nacin znamo da je metoda vratila listu sa svim elementima koji se u
+		//njoj nalaze
 		
 	}
 	
@@ -122,7 +126,7 @@ public class TwitterTest {
 		twitter.unesi(twit2.getKorisnik(), twit2.getPoruka());
 		
 		assertEquals(true, twitter.vratiPoslednji().equals(pomocnaLista.getLast()));
-	} 
+	}
 
 	/**
 	 * Test proverava da li metoda pravilno unosi korisnika
@@ -151,13 +155,125 @@ public class TwitterTest {
 		
 		assertEquals("Baterija mi traje krace od zivota plavuse u horor filmu", twitter.vratiPoruku(0));
 	}
+	
+	
+	/**
+	 * Test proverava da li metoda pravilno vraca korisnika na osnovu
+	 * odgovarajuceg unetog parametra koji predstavlja indeks u listi
+	 * Test method for {@link com.twitter.Twitter#vratiKorisnika(int i)}.
+	 */
+	@Test
+	public void testVratiKorisnika() {
+		twit.setKorisnik("Milica");
+		twit.setPoruka("Neka poruka");
+		
+		twitter.unesi(twit.getKorisnik(), twit.getPoruka());
+		
+		TwitterPoruka twit2 = new TwitterPoruka();
+		twit2.setKorisnik("Marko");
+		twit2.setPoruka("Neka poruka");
+		
+		twitter.unesi(twit2.getKorisnik(), twit2.getPoruka());
+		
+		assertEquals("Marko", twitter.vratiKorisnika(1));
+	}
 
+	/**
+	 * Test proverava da li metoda pravilno vraca poruku na osnovu
+	 * odgovarajuceg unetog parametra koji predstavlja indeks u listi
+	 * Test method for {@link com.twitter.Twitter#vratiKorisnika(int i)}.
+	 */
+	@Test
+	public void testVratiPoruku() {
+		twit.setKorisnik("Milica");
+		twit.setPoruka("Neka poruka");
+		
+		twitter.unesi(twit.getKorisnik(), twit.getPoruka());
+		
+		TwitterPoruka twit2 = new TwitterPoruka();
+		twit2.setKorisnik("Marko");
+		twit2.setPoruka("Druga poruka");
+		
+		twitter.unesi(twit2.getKorisnik(), twit2.getPoruka());
+		
+		assertEquals("Druga poruka", twitter.vratiPoruku(1));
+	}
+	
+	/**
+	 * Test method for {@link com.twitter.Twitter#vratiPoruke(int, java.lang.String)}.
+	 */
+	@Test (expected = java.lang.RuntimeException.class)
+	public void testVratiPorukeTagNull() {
+		twitter.vratiPoruke(50, null);
+	}
+	
+	/**
+	 * Test method for {@link com.twitter.Twitter#vratiPoruke(int, java.lang.String)}.
+	 */
+	@Test (expected = java.lang.RuntimeException.class)
+	public void testVratiPorukeTagEmptyString() {
+		twitter.vratiPoruke(50, "");
+	}
+	
 	/**
 	 * Test method for {@link com.twitter.Twitter#vratiPoruke(int, java.lang.String)}.
 	 */
 	@Test
-	public void testVratiPoruke() {
-		fail("Not yet implemented");
+	public void testVratiPoruke_index0() {
+		TwitterPoruka twit2 = new TwitterPoruka();
+		TwitterPoruka twit3 = new TwitterPoruka();
+		
+		twit.setKorisnik("Milica");
+		twit.setPoruka("danas je divan dan");
+		
+		twit2.setKorisnik("Marko");
+		twit2.setPoruka("Neka poruka");
+		
+		twit3.setKorisnik("Zeljko");
+		twit3.setPoruka("idem na bazen danas");
+		
+		twitter.unesi(twit.getKorisnik(), twit.getPoruka());
+		twitter.unesi(twit2.getKorisnik(), twit2.getPoruka());
+		twitter.unesi(twit3.getKorisnik(), twit3.getPoruka());
+		
+		TwitterPoruka[] pomocniNiz = new TwitterPoruka[2];
+		pomocniNiz[0] = twit;
+		pomocniNiz[1] = twit3;
+		
+		TwitterPoruka [] resrenje = twitter.vratiPoruke(5, "danas");
+		
+		assertEquals(pomocniNiz[0].getPoruka(), resrenje[0].getPoruka());
+	} //uhvacen bug prijavljen NullPointerException
+	
+	/**
+	 * Test method for {@link com.twitter.Twitter#vratiPoruke(int, java.lang.String)}.
+	 */
+	@Test
+	public void testVratiPoruke_index1() {
+		TwitterPoruka twit2 = new TwitterPoruka();
+		TwitterPoruka twit3 = new TwitterPoruka();
+		
+		twit.setKorisnik("Milica");
+		twit.setPoruka("danas je divan dan");
+		
+		twit2.setKorisnik("Marko");
+		twit2.setPoruka("Neka poruka");
+		
+		twit3.setKorisnik("Zeljko");
+		twit3.setPoruka("idem na bazen danas");
+		
+		twitter.unesi(twit.getKorisnik(), twit.getPoruka());
+		twitter.unesi(twit2.getKorisnik(), twit2.getPoruka());
+		twitter.unesi(twit3.getKorisnik(), twit3.getPoruka());
+		
+		TwitterPoruka[] pomocniNiz = new TwitterPoruka[2];
+		pomocniNiz[0] = twit;
+		pomocniNiz[1] = twit3;
+		
+		TwitterPoruka [] resrenje = twitter.vratiPoruke(5, "danas");
+		
+		assertEquals(pomocniNiz[1].getPoruka(), resrenje[1].getPoruka());
 	}
+	
 
 }

@@ -113,4 +113,18 @@ public class TwitterPorukaTest {
 				"KORISNIK:"+twit.getKorisnik()+ " VREME:"+twit.getVreme().getTime()+" PORUKA:"+twit.getPoruka());
 	}
 
+	/**
+	 * Test method for {@link com.twitter.poruke.TwitterPoruka#equals()}.
+	 */
+	@Test
+	public void testEquals() {
+		twit.setKorisnik("Milica");
+		twit.setPoruka("Neka nova poruka");
+		
+		TwitterPoruka twit2 = new TwitterPoruka();
+		twit2.setKorisnik("Milica");
+		twit2.setPoruka("Neka nova poruka");
+		
+		assertEquals(true, twit.equals(twit2));
+	}
 }
