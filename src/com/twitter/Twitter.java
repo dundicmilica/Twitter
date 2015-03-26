@@ -1,6 +1,7 @@
 package com.twitter;
 
 import java.util.LinkedList;
+
 import com.twitter.poruke.TwitterPoruka;
 
 /**
@@ -39,6 +40,22 @@ public class Twitter {
 		poruke.addLast(twit);
 	}
 	
+	
+	//Pomocna metoda koja vraca poslednji element u listi
+	public TwitterPoruka vratiPoslednji(){
+		return poruke.getLast();
+	}
+	
+	//Pomocna metoda koja vraca korisnika
+	public String vratiKorisnika () {
+		return poruke.get(0).getKorisnik();
+	}
+	
+	//Pomocna metoda koja vraca poruku
+		public String vratiPoruku () {
+			return poruke.get(0).getPoruka();
+		}
+	
 	/**
 	 * Metoda proverava da li u listi TwitterPoruka postoji poruka
 	 * sa tag-om. Ako se nadje neka takva i ako nije prekoracen maxBroj
@@ -76,5 +93,17 @@ public class Twitter {
 		
 		return rezultat;
 	}
-			
+	
+	//Pomocna metoda koja poredi dve liste
+	public boolean uporediListe (LinkedList<TwitterPoruka> lista){
+		for (int i = 0; i < lista.size(); i++) {
+			if(lista.size()==poruke.size() && lista.get(i).getKorisnik().equals(poruke.get(i).getKorisnik())
+					&& lista.get(i).getPoruka().equals(poruke.get(i).getPoruka())
+					&& lista.get(i).getVreme().getTime().equals(poruke.get(i).getVreme().getTime()))
+				continue;
+			else return false;			
+		}
+		
+		return true;
+	}
 }

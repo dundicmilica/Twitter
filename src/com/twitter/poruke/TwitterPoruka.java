@@ -84,5 +84,19 @@ public class TwitterPoruka {
 	
 	public String toString(){
 		return "KORISNIK:"+korisnik+" VREME:"+vreme.getTime()+" PORUKA:"+poruka;
-	}	
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof TwitterPoruka))
+			return false;
+		
+		TwitterPoruka twit = (TwitterPoruka) o;
+		
+		if(twit.getKorisnik().equals(korisnik)
+				&& twit.getPoruka().equals(poruka)
+				&& twit.getVreme().equals(vreme))
+			return true;
+		return false;
+	}
 }
